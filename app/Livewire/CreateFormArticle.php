@@ -16,7 +16,7 @@ class CreateFormArticle extends Component
     public $body;
 
     #[Validate('required|image|max:1024|mimes:jpg,jpeg,png', 
-               message: 'L\'immagine è obbligatoria e deve essere di un formato valido')]
+               message: 'L\'immagine è obbligatoria e deve essere di un formato valido e non deve superare 1MB')]
     public $img;
 
     public function store()

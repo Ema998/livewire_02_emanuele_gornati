@@ -1,12 +1,12 @@
 <x-layout>
     <x-header>
-        <h1 class="text-center">AGGIUNGI UN ARTICOLO</h1>
+        <h1 class="text-center">MODIFICA UN ARTICOLO</h1>
     </x-header>
     <x-message/>
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center">
             <div class="col-12 col-md-6">
-                <form wire:submit="store" class="p-5" enctype="multipart/form-data">
+                <form wire:submit="updateArticle" class="p-5" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="titoloArticolo">Titolo articolo</label>
                         <input wire:model="title" type="text" class="form-control" id="titoloArticolo" required>
@@ -28,3 +28,4 @@
         </div>
     </div>
 </x-layout>
+

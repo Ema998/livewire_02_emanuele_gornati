@@ -20,6 +20,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('articles.create') }}">Crea articolo</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('articles.index') }}">I Nostri Articoli</a>
+                </li>
             </ul>
         </div>
     </nav>
