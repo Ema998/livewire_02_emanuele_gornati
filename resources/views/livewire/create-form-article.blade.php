@@ -1,8 +1,5 @@
-<x-layout>
-    <x-header>
-        <h1 class="text-center">AGGIUNGI UN ARTICOLO</h1>
-    </x-header>
-    <x-message/>
+<div>
+<x-message/>
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center">
             <div class="col-12 col-md-6">
@@ -27,4 +24,4 @@
             </div>
         </div>
     </div>
-</x-layout>
+</div>
