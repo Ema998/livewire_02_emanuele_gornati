@@ -8,6 +8,7 @@ use Livewire\Attributes\Validate;
 
 class CreateFormArticle extends Component
 {
+    use \Livewire\WithFileUploads;
 
     #[Validate('required|string|max:255', message: 'Il titolo  è obbligatorio')]
     public $title;
@@ -22,6 +23,8 @@ class CreateFormArticle extends Component
     public function store()
     {
         $this->validate();
+
+        $imagePath = $this->img->store('articles', 'public');
 
         Article::create([
             'title' => $this->title,
