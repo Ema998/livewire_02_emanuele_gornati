@@ -4,7 +4,7 @@
                 <img src="{{ asset('storage/' . $article->img) }}" class="card-img-top" alt="...">
             </div>
             <div class="col-12 col">
-                <p>{{ $article->name }}</p>
+                <p>{{ $article->title }}</p>
                 <p>{{ $article->body }}</p>
             </div>
         </div>

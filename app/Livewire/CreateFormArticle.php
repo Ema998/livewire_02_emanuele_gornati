@@ -29,10 +29,8 @@ class CreateFormArticle extends Component
         Article::create([
             'title' => $this->title,
             'body' => $this->body,
-            'img' => $this->img,
+            'img' => $imagePath,
         ]);
-
-        $this->img = $this->img->store('articles', 'public');
 
         $this->reset();
 

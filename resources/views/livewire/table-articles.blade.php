@@ -16,11 +16,13 @@
                             <th scope="row">{{ $article->id }}</th>
                             <td>{{$article->title}}</td>
                             <td>{{$article->body}}</td>
-                            <td><{{ $article->img }}</td>
+                            <td>  
+                                <img src="{{ Storage::url($article->img) }}" alt="{{ $article->title }}" style="max-width: 100px;">
+                            </td>
                             <td>
-                                <a href="{{ route('article.show', compact('article')) }}" class="btn btn-primary">Vai al dettaglio</a>
-                                <a href="{{ route('article.edit', compact('article')) }}" class="btn btn-secondary">Modifica</a>
-                                <button wire:click="destroy($article)" class="btn btn-danger">Elimina</button>
+                                <a href="{{ route('articles.show', compact('article')) }}" class="btn btn-primary">Vai al dettaglio</a>
+                                <a href="{{ route('articles.edit', compact('article')) }}" class="btn btn-secondary">Modifica</a>
+                                <button wire:click="destroy({{$article}})" class="btn btn-danger">Elimina</button>
                             </td>
                         </tr>
                     @endforeach
