@@ -1,7 +1,9 @@
-<header class="container-fluid">
-        <div class="row align-items-center justify-content-center vh-100">
-            <div class="col-12 col-md-6">
+<header class="hero-header">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
                 {{ $slot }}
             </div>
         </div>
-    </header>
+    </div>
+</header>

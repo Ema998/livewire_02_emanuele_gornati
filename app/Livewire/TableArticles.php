@@ -8,16 +8,22 @@ use Illuminate\Support\Facades\Storage;
 
 class TableArticles extends Component
 {
-    public function destroy(Article $article)
+    public function destroy(int $articleId): void
     {
-        $article = Article::findOrFail($article->id);
+        $article = Article::findOrFail($articleId);
+
+        if ($article->img && Storage::disk('public')->exists($article->img)) {
+            Storage::disk('public')->delete($article->img);
+        }
+
         $article->delete();
+
         session()->flash('message', 'Article deleted successfully.');
     }
     public function render()
     {
-        $articles = Article::all();
-
-        return view('livewire.table-articles', compact('articles') );
+        return view('livewire.table-articles', [
+            'articles' => Article::latest()->get(),
+        ]);
     }
 }

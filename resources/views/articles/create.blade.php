@@ -1,8 +1,11 @@
 <x-layout>
     <x-header>
-        <h1 class="text-center">Create Article</h1>
+        <h1 class="display-6 fw-bold mb-3">Crea un nuovo articolo</h1>
+        <p class="lead mx-auto" style="max-width: 680px;">
+            Condividi idee, esperienze e novità con la community. Compila il form e allega un'immagine per rendere la tua storia ancora più coinvolgente.
+        </p>
     </x-header>
-    <livewire:create-form-article>
-        
-    </livewire:create-form-article>
+    <section class="py-4">
+        <livewire:create-form-article />
+    </section>
 </x-layout>

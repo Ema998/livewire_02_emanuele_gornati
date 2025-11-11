@@ -35,6 +35,7 @@ class CreateFormArticle extends Component
         $this->reset();
 
         session()->flash('message', 'Article created successfully.');
+        return $this->redirect(route('articles.index'), navigate: true);
     }
 
     public function render()

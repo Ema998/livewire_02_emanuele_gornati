@@ -6,12 +6,12 @@ use Livewire\Component;
 use Livewire\Attributes\Validate;
 use App\Models\Article;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class EditArticle extends Component
 {
     use WithFileUploads;
     
-    public $article;
     public $articleId;
     public $existImgPath;
 
@@ -27,13 +27,11 @@ class EditArticle extends Component
     public function mount($articleId)
     {
         $article = Article::findOrFail($articleId);
-
-        $this->article = $article;
         $this->articleId = $article->id;
         $this->title = $article->title;
         $this->body = $article->body;
         $this->existImgPath = $article->img;
-        $this->img = null;
+        $this->img;
     }
 
     public function updateArticle()
@@ -42,10 +40,21 @@ class EditArticle extends Component
 
         $article = Article::findOrFail($this->articleId);
 
+        $imagePath = $this->existImgPath;
+
         if ($this->img instanceof \Livewire\TemporaryUploadedFile) {
-            $imagePath = $this->img->store('article', 'public');
+            $imagePath = $this->img->store('articles', 'public');
+
+            if ($this->existImgPath) {
+                $oldPath = str_replace('/storage/', '', $this->existImgPath);
+                if (Storage::disk('public')->exists($oldPath)) {
+                    Storage::disk('public')->delete($oldPath);
+                }
+            }
+
+            $this->existImgPath = $imagePath;
         } else {
-            $imagePath = $this->article->img;
+            $imagePath = $this->existImgPath;
         }
 
         $article->update([
@@ -54,12 +63,17 @@ class EditArticle extends Component
             'img' => $imagePath,
         ]);
 
+        $this->reset('img');
+        $this->existImgPath = $article->img;
+
         session()->flash('message', 'Article updated successfully.');
         return $this->redirect(route('articles.index'), navigate: true);
     }
     
     public function render()
     {
-        return view('livewire.edit-article');
+        return view('livewire.edit-article', [
+            'articles' => Article::latest()->get(),
+        ]);
     }
 }
